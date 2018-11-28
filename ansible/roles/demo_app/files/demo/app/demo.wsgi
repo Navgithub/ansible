@@ -1,8 +1,11 @@
 activate_this = '/var/www/demo/.venv/bin/activate_this.py'
 execfile(activate_this, dict(__file__=activate_this))
 
+import yaml
+my_object = yaml_file("/ansible/roles/default/main.yml")
+
 import os
-os.environ['DATABASE_URI'] = 'mysql://demo:"{{ vault_pass }}"@db01/demo'
+os.environ['DATABASE_URI'] = 'mysql://demo:"{{ my_object.vault_pass }}"@db01/demo'
 
 import sys
 sys.path.insert(0, '/var/www/demo')
